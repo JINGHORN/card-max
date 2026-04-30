@@ -1,6 +1,6 @@
 <template>
   <div class="page-wrap">
-    <!-- 顶部导航：Logo缩小 + 公司名垂直居中 + 和切换按钮右侧对齐 -->
+    <!-- 顶部导航：Logo高度改为30 + 公司名垂直居中 + 和切换按钮右侧对齐 -->
     <header class="top-nav">
       <div class="logo-container">
         <img src="https://img.jinghorn.com/logo.png" alt="Logo" class="logo-img">
@@ -13,7 +13,7 @@
       <div class="nav-placeholder"></div>
     </header>
 
-    <!-- 姓名职位区域：居中 -->
+    <!-- 姓名职位区域：高度改为100 -->
     <div class="profile-row">
       <!-- 中英切换按钮 -->
       <button class="lang-switch" @click="toggleLang">
@@ -38,54 +38,45 @@
         </button>
       </div>
 
-      <!-- 电话 -->
+      <!-- 电话（已删除保存图标） -->
       <div class="contact-card">
         <div class="item-left">
           <i class="fas fa-phone icon-phone"></i>
           <div class="text-wrap">
             <div class="label">{{ langData.phoneLab }}</div>
-            <div class="val">+8615961616191</div>
+            <div class="val">+8613800138000</div>
           </div>
         </div>
         <div class="item-right">
-          <button @click="saveToContact" class="icon-btn">
-            <i class="fas fa-address-book icon-blue"></i>
-          </button>
           <button @click="callTel" class="main-btn">{{ langData.callBtn }}</button>
         </div>
       </div>
 
-      <!-- WhatsApp -->
+      <!-- WhatsApp（改为复制功能） -->
       <div class="contact-card">
         <div class="item-left">
           <i class="fab fa-whatsapp icon-wa"></i>
           <div class="text-wrap">
             <div class="label">WhatsApp</div>
-            <div class="val">+8615961616191</div>
+            <div class="val">+8613800138000</div>
           </div>
         </div>
         <div class="item-right">
-          <button @click="copyWa" class="icon-btn">
-            <i class="far fa-copy"></i>
-          </button>
-          <button @click="goWa" class="main-btn">{{ langData.waBtn }}</button>
+          <button @click="copyWa" class="main-btn">{{ langData.waBtn }}</button>
         </div>
       </div>
 
-      <!-- 微信 绿色图标 -->
+      <!-- 微信（改为复制功能） -->
       <div class="contact-card">
         <div class="item-left">
           <i class="fab fa-weixin" style="color:#07C160;"></i>
           <div class="text-wrap">
             <div class="label">{{ langData.wechatLab }}</div>
-            <div class="val">15961616191</div>
+            <div class="val">SmartLinkFuture</div>
           </div>
         </div>
         <div class="item-right">
-          <button @click="copyWechat" class="icon-btn">
-            <i class="far fa-copy"></i>
-          </button>
-          <button @click="goWechat" class="main-btn">{{ langData.wechatBtn }}</button>
+          <button @click="copyWechat" class="main-btn">{{ langData.wechatBtn }}</button>
         </div>
       </div>
 
@@ -95,7 +86,7 @@
           <i class="fas fa-envelope icon-email"></i>
           <div class="text-wrap">
             <div class="label">{{ langData.emailLab }}</div>
-            <div class="val">max@jinghorn.com</div>
+            <div class="val">contact@smartlinkfuture.com</div>
           </div>
         </div>
         <button @click="goMail" class="main-btn">{{ langData.emailBtn }}</button>
@@ -107,7 +98,7 @@
           <i class="fas fa-globe icon-web"></i>
           <div class="text-wrap">
             <div class="label">{{ langData.webLab }}</div>
-            <div class="val">www.jinghorn.com</div>
+            <div class="val">www.smartlinkfuture.com</div>
           </div>
         </div>
         <button @click="goWeb" class="main-btn">{{ langData.webBtn }}</button>
@@ -129,7 +120,7 @@
       <div class="modal-card">
         <img src="https://img.jinghorn.com/13590897.png" alt="名片大图" class="card-img-horizontal">
         <p class="tip">{{ langData.tipText }}</p>
-        <button @click="closeShareModal" class="close-btn btn-blue">Close</button>
+        <button @click="closeShareModal" class="close-btn btn-blue">{{ langData.closeBtnText }}</button>
       </div>
     </div>
   </div>
@@ -138,61 +129,71 @@
 <script setup>
 import { ref, computed } from 'vue'
 const showModal = ref(false)
-const isEn = ref(true)
+const isEn = ref(false)
 
-// 完整双语
+// 完整双语（新增弹窗关闭按钮文字、更新其他文字）
 const langData = computed(() => {
   return isEn.value ? {
     name: 'Max Wu',
     post: 'Founder & CEO',
     contactTitle: 'Contact Info',
-    shareText: 'Share',
+    shareText: 'Save Card',
     tipText: 'Long press to save / share',
     phoneLab: 'Phone',
     callBtn: 'Call',
-    waBtn: 'Chat',
+    waBtn: 'Copy',
     wechatLab: 'WeChat',
-    wechatBtn: 'Add',
+    wechatBtn: 'Copy',
     emailLab: 'Email',
     emailBtn: 'Send',
     webLab: 'Website',
-    webBtn: 'Visit'
+    webBtn: 'Visit',
+    closeBtnText: 'Close' // 英文：Close
   } : {
     name: '吴先生',
-    post: '总经理',
+    post: '创始人 & 首席执行官',
     contactTitle: '联系信息',
     shareText: '分享名片',
-    tipText: '长按保存/分享名片',
+    tipText: '长按保存 / 分享名片',
     phoneLab: '电话',
     callBtn: '拨打',
-    waBtn: '对话',
+    waBtn: '复制',
     wechatLab: '微信',
-    wechatBtn: '添加',
+    wechatBtn: '复制',
     emailLab: '电子邮箱',
     emailBtn: '发送',
     webLab: '官方网站',
-    webBtn: '访问'
+    webBtn: '访问',
+    closeBtnText: '关闭' // 中文：关闭（替换原Close）
   }
 })
 
 const toggleLang = () => { isEn.value = !isEn.value }
 
-const phoneNum = '+8615161616191'
-const wechatId = '15961616191'
-const waNum = '+8615961616191'
+const phoneNum = '+8613800138000'
+const wechatId = 'SmartLinkFuture'
+const waNum = '+8613800138000'
 
-const copyWechat = async () => { await navigator.clipboard.writeText(wechatId); alert('✅ Copied') }
-const copyWa = async () => { await navigator.clipboard.writeText(waNum); alert('✅ Copied') }
+// WhatsApp复制功能：复制号码 + 弹窗提示
+const copyWa = async () => { 
+  await navigator.clipboard.writeText(waNum); 
+  alert(isEn.value ? '✅ WhatsApp number copied' : '✅ WhatsApp号已复制');
+}
+
+// 微信复制功能：复制微信号 + 弹窗提示
+const copyWechat = async () => { 
+  await navigator.clipboard.writeText(wechatId); 
+  alert(isEn.value ? '✅ WeChat ID copied' : '✅ 微信号已复制');
+}
+
 const saveToContact = () => { window.open(`tel:${phoneNum}`); alert('📒 Saved') }
 
 const openShareModal = () => showModal.value = true
 const closeShareModal = () => showModal.value = false
 
 const callTel = () => window.open(`tel:${phoneNum}`)
-const goWechat = () => { copyWechat(); alert(isEn?'WeChat ID copied':'微信号已复制') }
-const goWa = () => window.open('https://wa.me/8615961616191', '_blank')
-const goMail = () => window.open('mailto:max@jinghorn.com')
-const goWeb = () => window.open('https://www.jinghorn.com')
+const goMail = () => window.open('mailto:contact@smartlinkfuture.com')
+const goWeb = () => window.open('https://www.smartlinkfuture.com')
 </script>
 
 <style>
@@ -211,7 +212,7 @@ const goWeb = () => window.open('https://www.jinghorn.com')
   min-height: 100vh;
 }
 
-/* 顶部导航：Logo缩小 + 公司名垂直居中 */
+/* 顶部导航：Logo高度改为30 + 公司名垂直居中 */
 .top-nav {
   display: flex;
   align-items: center;
@@ -221,7 +222,7 @@ const goWeb = () => window.open('https://www.jinghorn.com')
   position: relative;
   min-height: 48px; /* 顶栏最小高度，保证垂直居中空间 */
 }
-/* Logo尺寸高度 */
+/* Logo高度改为30px */
 .logo-container { height: 30px; }
 .logo-img { height: 100%; width: auto; object-fit: contain; }
 .nav-placeholder { width: 36px; }
@@ -256,9 +257,9 @@ const goWeb = () => window.open('https://www.jinghorn.com')
   position: absolute;
   top: 6px;
   right: 20px;
-  border: 1px solid #002D62;
+  border: 1px solid #0052D9;
   background: #fff;
-  color: #002D62;
+  color: #0052D9;
   width: 32px;
   height: 20px;
   border-radius: 10px;
@@ -271,14 +272,14 @@ const goWeb = () => window.open('https://www.jinghorn.com')
   z-index: 10; /* 保证按钮在公司名上层 */
 }
 .lang-switch:hover {
-  background: #002D62;
+  background: #0052D9;
   color: #fff;
 }
 
-/* 姓名职位 居中 */
+/* 姓名职位区域：高度改为100px */
 .profile-row {
   position: relative;
-  height: 80px;
+  height: 100px; /* 原80px → 改为100px */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -335,7 +336,7 @@ const goWeb = () => window.open('https://www.jinghorn.com')
   font-size: 14px;
   cursor: pointer;
 }
-.share-icon-blue, .share-text-blue { color: #002D62; }
+.share-icon-blue, .share-text-blue { color: #0052D9; }
 
 /* 卡片 绝对固定 */
 .contact-card {
@@ -375,7 +376,7 @@ const goWeb = () => window.open('https://www.jinghorn.com')
   color: #86909c;
 }
 .main-btn {
-  background: #002D62;
+  background: #0052D9;
   color: #fff;
   border: none;
   border-radius: 8px;
@@ -387,7 +388,7 @@ const goWeb = () => window.open('https://www.jinghorn.com')
   align-items: center;
   justify-content: center;
 }
-.main-btn:hover { background: #002D62; }
+.main-btn:hover { background: #0047b3; }
 
 /* 底部 */
 .footer-top-text {
@@ -438,5 +439,5 @@ const goWeb = () => window.open('https://www.jinghorn.com')
   font-size: 14px;
   cursor: pointer;
 }
-.btn-blue { color: #002D62; font-weight: 500; }
+.btn-blue { color: #0052D9; font-weight: 500; }
 </style>
