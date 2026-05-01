@@ -253,6 +253,10 @@ const goWeb = () => window.open('https://www.jinghorn.com')
   margin: 0 auto;
   background: #fff;
   min-height: 100vh;
+   /* 这3行，实现内容区自动挤压，底栏压在最底部 */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 /* ========== 顶部导航样式 ========== */
@@ -357,7 +361,10 @@ const goWeb = () => window.open('https://www.jinghorn.com')
 }
 
 /* ========== 主内容容器 ========== */
-.container { padding: 18px 20px 12px; }
+.container { 
+  padding: 18px 20px 12px; 
+  flex: 1; /* 让内容区自动扩展，挤压底部 */
+}
 .head-row {
   display: flex;
   justify-content: space-between;
