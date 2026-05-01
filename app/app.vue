@@ -235,6 +235,16 @@ const goMail = () => window.open('mailto:max@jinghorn.com')
  * 打开官网
  */
 const goWeb = () => window.open('https://www.jinghorn.com')
+
+/**
+ * 唤起邮箱发送
+ */
+const goMail = () => window.open('mailto:max@jinghorn.com')
+
+/**
+ * 打开官网
+ */
+const goWeb = () => window.open('https://www.jinghorn.com')
 </script>
 
 <style>
