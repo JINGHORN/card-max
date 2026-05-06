@@ -150,7 +150,7 @@ const isEn = ref(true)
 // ========== 双语文案配置：统一管理所有需要切换的文字 ==========
 const langData = computed(() => {
   return isEn.value ? {
-    name: 'Max Wu',
+    name: 'Max',
     post: 'Founder & CEO',
     contactTitle: 'Contact Info',
     shareText: 'Share Card',
